@@ -7,7 +7,7 @@ http.createServer(async function (req, res) {
     return;
   }
   if (!req.url.match(/^\/\d{1,25}\/\d{1,25}\/.+\..{1,25}/)) {
-    res.write("URL Invalid. fuck you shit");
+    res.write("twitter: @baeendtweet");
     res.end();
     return;
   }

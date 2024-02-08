@@ -25,4 +25,14 @@ http.createServer(async function (req, res) {
     res.end();
     return;
   }
+    const proxyReq = https.request(requestedUrl, options, (proxyRes) => {
+    res.writeHead(proxyRes.statusCode, proxyRes.headers);
+    proxyRes.pipe(res, {
+      end: true
+    });
+  });
+  
+  req.pipe(proxyReq, {
+    end: true
+  });
 }).listen(process.env.PORT || 3000);

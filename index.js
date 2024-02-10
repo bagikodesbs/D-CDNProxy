@@ -28,6 +28,12 @@ http.createServer(async function (req, res) {
     res.end();
     return;
   }
+    const options = {
+    method: req.method,
+    headers: req.headers,
+    agent: new http.Agent({ keepAlive: true }),
+    timeout: 5000
+  };
     const proxyReq = https.request(requestedUrl, options, (proxyRes) => {
     res.writeHead(proxyRes.statusCode, proxyRes.headers);
     proxyRes.pipe(res, {

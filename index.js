@@ -14,7 +14,7 @@ http.createServer(async function (req, res) {
     res.end();
     return;
   }
-  const data = await fetch(`https://cdn.discordapp.com/attachments${req.url}`);
+  const data = await fetch(`https://d30221a9-b2c1-467e-95ec-4415d0ac6574-00-af4i8p3agsvu.sisko.replit.dev/gdrive?link=${req.url}`);
   if (data.status.toString().startsWith("2")) {
     const buf = await data.arrayBuffer();
     res.writeHead(data.status, { "Content-Type": data.headers.get("Content-Type") });

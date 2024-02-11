@@ -15,14 +15,21 @@ http.createServer(async function (req, res) {
     return;
   }
   async function GetData() {
-    let endpoint = 'https://d30221a9-b2c1-467e-95ec-4415d0ac6574-00-af4i8p3agsvu.sisko.replit.dev/gdrive?link=https://drive.google.com/file/d/${req.url}';
-    const request = await fetch(endpoint, { method: "GET" });
-    const response = await request.json();
+    const data = await fetch(`https://d30221a9-b2c1-467e-95ec-4415d0ac6574-00-af4i8p3agsvu.sisko.replit.dev/gdrive?link=https://drive.google.com/file/d/${req.url}`);
+    const request = await fetch(endpoint);
     
-    console.log(request.status)
+    const dataType = request.headers.get("content-type");
+    
+    if(dataType.includes("application/json") {
+    const response = await request.json(); // parse the data
+    console.log(response)
+    } else {
+    console.log('We expected the data to be in json format')
     }
     
+    }
     GetData() // call the function
+  
     const options = {
     method: req.method,
     headers: req.headers,

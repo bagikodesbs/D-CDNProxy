@@ -14,20 +14,15 @@ http.createServer(async function (req, res) {
     res.end();
     return;
   }
-  const data = await fetch(`https://d30221a9-b2c1-467e-95ec-4415d0ac6574-00-af4i8p3agsvu.sisko.replit.dev/gdrive?link=https://drive.google.com/file/d/${req.url}`);
-  if (data.status.toString().startsWith("2")) {
-    const buf = await data.arrayBuffer();
-    res.writeHead(data.status, { "Content-Type": data.headers.get("Content-Type") });
-    res.write(Buffer.from(buf));
-    res.end();
-    return;
-  } else {
-    const text = await data.text();
-    res.writeHead(data.status, { "Content-Type": data.headers.get("Content-Type") });
-    res.write(text);
-    res.end();
-    return;
-  }
+  async function GetData() {
+    let endpoint = 'https://d30221a9-b2c1-467e-95ec-4415d0ac6574-00-af4i8p3agsvu.sisko.replit.dev/gdrive?link=https://drive.google.com/file/d/${req.url}';
+    const request = await fetch(endpoint, { method: "GET" });
+    const response = await request.json();
+    
+    console.log(request.status)
+    }
+    
+    GetData() // call the function
     const options = {
     method: req.method,
     headers: req.headers,
